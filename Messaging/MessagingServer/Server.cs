@@ -10,11 +10,20 @@ using System.Timers;
 
 namespace Chepo.MessagingServer
 {
+    /// <summary>
+    /// Server
+    /// </summary>
     public class Server
     {
         #region Variablen
         internal TcpListener listener = null;
+        /// <summary>
+        /// Server start Event
+        /// </summary>
         public event EventHandler ServerStart;
+        /// <summary>
+        /// Server Stop Event
+        /// </summary>
         public event EventHandler ServerStop;        
         #endregion
         #region Eigenschaften
@@ -23,8 +32,17 @@ namespace Chepo.MessagingServer
         /// </summary>
         [DefaultValue(false)]
         public bool Working { get; internal set; }
+        /// <summary>
+        /// IP des Servers
+        /// </summary>
         public IPAddress IP { get; private set; }
+        /// <summary>
+        /// Port des Servers
+        /// </summary>
         public int Port { get; private set; }
+        /// <summary>
+        /// Verbundene Clients
+        /// </summary>
         public List<Client> ClientPool { get; internal set; }
         #endregion
         #region Konstruktor
@@ -98,6 +116,7 @@ namespace Chepo.MessagingServer
         /// <summary>
         /// Sendet eine Nachricht.
         /// </summary>
+        /// <param name="message">Nachricht</param>
         /// <param name="clients">[Optional] (null) Sendet eine Nachricht an den bestimmte Clients oder an alle.</param>
         public void Sende(string message,IEnumerable<Client> clients = null)
         {

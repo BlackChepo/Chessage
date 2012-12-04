@@ -8,11 +8,23 @@ using System.Threading.Tasks;
 
 namespace Chepo.MessagingServer
 {
+    /// <summary>
+    /// Client
+    /// </summary>
     public class Client
     {
+        /// <summary>
+        /// Stream getrennt Event
+        /// </summary>
         public event EventHandler StreamGetrennt;
+        /// <summary>
+        /// Neuer Stream Event
+        /// </summary>
         public event EventHandler NeuerStream;
         
+        /// <summary>
+        /// Gibt den Status des Clients zurück
+        /// </summary>
         public bool Verbunden 
         { 
             get
@@ -24,6 +36,10 @@ namespace Chepo.MessagingServer
             }
         }
 
+        /// <summary>
+        /// Konstruktor
+        /// </summary>
+        /// <param name="client">TcpClient</param>
         public Client(TcpClient client)
         {
             if (client == null)
@@ -35,6 +51,9 @@ namespace Chepo.MessagingServer
         }
 
         private TcpClient _TcpClient = null;
+        /// <summary>
+        /// TcpClient
+        /// </summary>
         public TcpClient TcpClient
         {
             get
@@ -52,6 +71,9 @@ namespace Chepo.MessagingServer
         }
 
         private NetworkStream _Stream = null;
+        /// <summary>
+        /// Networkstream
+        /// </summary>
         public NetworkStream Stream
         {
             get
@@ -75,6 +97,9 @@ namespace Chepo.MessagingServer
             }
         }
 
+        /// <summary>
+        /// Hört den Stream ab
+        /// </summary>
         public void HöreStreamAb()
         {
             if (Stream == null)
@@ -115,6 +140,10 @@ namespace Chepo.MessagingServer
                 });          
         }
 
+        /// <summary>
+        /// Sendet Nachrichten an den Stream
+        /// </summary>
+        /// <param name="message">Nachricht</param>
         public void SendeAnStream(string message)
         {
             if (Stream == null)

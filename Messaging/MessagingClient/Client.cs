@@ -10,16 +10,34 @@ using System.IO;
 
 namespace Chepo.MessagingClient
 {
+    /// <summary>
+    /// Client
+    /// </summary>
     public class Client
     {
         #region Variablen
         private TcpClient client = null;
+        /// <summary>
+        /// Client Getrennt Event
+        /// </summary>
         public event EventHandler ClientGetrennt;
+        /// <summary>
+        /// Client Verbunden
+        /// </summary>
         public event EventHandler ClientVerbunden;
         #endregion
         #region Eigenschaften
+        /// <summary>
+        /// Ziel IP
+        /// </summary>
         public IPAddress IP { get; internal set; }
+        /// <summary>
+        /// Ziel Port
+        /// </summary>
         public int Port { get; internal set; }
+        /// <summary>
+        /// Client Stream
+        /// </summary>
         public NetworkStream Stream { get; private set; }
 
         /// <summary>
@@ -61,6 +79,9 @@ namespace Chepo.MessagingClient
         }
         #endregion
         #region Öffentliche Funktionen
+        /// <summary>
+        /// Verbindet sich mit dem Server
+        /// </summary>
         public void Verbinden()
         {
             if (client == null)
@@ -82,6 +103,10 @@ namespace Chepo.MessagingClient
             }
         }
 
+        /// <summary>
+        /// Sendet Daten an den Stream
+        /// </summary>
+        /// <param name="message">Nachricht</param>
         public void SendeAnStream(string message)
         {
             if (!Verbunden)
@@ -128,7 +153,7 @@ namespace Chepo.MessagingClient
                         {
                             numberOfBytesRead = Stream.Read(readBuffer, 0, readBuffer.Length);
                         }
-                        catch (IOException ex)
+                        catch (IOException)
                         {
                             nochVerbunden = false;
                             break;

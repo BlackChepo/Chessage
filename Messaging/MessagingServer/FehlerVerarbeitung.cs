@@ -5,10 +5,18 @@ using System.Text;
 
 namespace Chepo.MessagingServer
 {
+    /// <summary>
+    /// Erweiterungsklasse
+    /// </summary>
     public static class FehlerVerarbeitung
     {
         private static string fehlerPräfix = "Fehler: ";
 
+        /// <summary>
+        /// Verarbeitet eine Fehlermeldung
+        /// </summary>
+        /// <param name="ex"></param>
+        /// <param name="mitStack"></param>
         public static void verarbeite(this Exception ex, bool mitStack = false)
         {
             StringBuilder sb = new StringBuilder();
